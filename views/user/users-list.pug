@@ -1,0 +1,18 @@
+p(style="font-size: 18px; color: #333;") Qty of users:
+    b= qty
+
+br
+
+ul(style="list-style-type: none;")
+    each u in users
+        li(style="margin-bottom: 10px;") #{u.name} #{u.lastname}
+            a(href=`/users/${u._id}`, style="text-decoration: none; color: #007bff;")   =>  Go to profile
+        hl
+br
+
+br
+a(href="/users/new", style="text-decoration: none; color: #007bff;") Add new user
+br
+hl
+br
+a(href="/users", style="text-decoration: none; color: #007bff;") Home page

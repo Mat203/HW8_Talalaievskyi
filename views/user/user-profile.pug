@@ -1,0 +1,28 @@
+header(style="padding: 10px; background-color: #f8f9fa;")
+
+    h2(style="font-size: 24px; color: #333;") name: #{user.name}
+    h2(style="font-size: 24px; color: #333;") lastname: #{user.lastname}
+    h3(style="font-size: 18px; color: #555;")  ID: #{user._id}
+    h3(style="font-size: 18px; color: #555;")  email: #{user.email}
+    h3(style="font-size: 18px; color: #555;")  pass: #{user.password}
+
+    button(id="deleteStudent", style="padding: 8px; background-color: #dc3545; color: #fff; border: none; cursor: pointer; margin-top: 10px;") Delete user
+
+section(style="margin-top: 20px;")
+
+
+    a(href=`/users/${user._id}/update`, style="padding: 8px; background-color: #28a745; color: #fff; border: none; cursor: pointer;") update user
+
+
+hl(style="margin-top: 20px;")
+a(href="/", style="text-decoration: none; color: #007bff;") Home page
+
+div(id="resultContainer", style="margin-top: 20px;")
+
+script.
+    document.getElementById('deleteStudent').addEventListener('click', function () {
+        fetch(`/users/#{user._id}`, {method: 'DELETE'})
+            .then(response => response.text())
+            .then(html => document.getElementById('resultContainer').innerHTML = html)
+            .catch(error => { document.getElementById('resultContainer').innerHTML = error.message });
+    });
